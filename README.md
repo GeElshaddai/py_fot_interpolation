@@ -1,6 +1,6 @@
 # Fuel Oil Tank Interpolation
 
-A Python project for calculating fuel oil tank volumes through interpolation. Given a measured value (such as sounding or ullage level), the application interpolates between known tank calibration (table) data points to estimate the corresponding volume.
+A Python project for calculating fuel oil tank volumes through interpolation. Given a measured value (such as sounding level), the application interpolates between known tank calibration (table) data points to estimate the corresponding volume.
 
 ## Table of Contents
 
@@ -53,6 +53,9 @@ Clone the repository or download and extract the project folder:
 
 ```bash
 git clone https://github.com/GeElshaddai/py_fot_interpolation.git
+```
+Then, cd into the directiory:
+```bash
 cd py_fot_interpolation
 ```
 
@@ -93,7 +96,7 @@ If you see `Installation OK`, you are ready to go.
 
 ### 1. Prepare your tank table
 
-Create a CSV file containing your tank calibration data, with one column for the level and one for the volume. For example, `tank_table.csv`:
+Create a CSV file containing your tank calibration data, with one column for the level and one for the volume. CSV file name should exactly be `tank_table.csv`:
 
 ```csv
 level,volume
@@ -112,7 +115,12 @@ level,volume
 ```bash
 python fot_interpolation.py
 ```
+> Note: This way will ask you the measured level.
 
+Or you can directly provide the measured level, for example `25`:
+```bash
+python fot_interpolation.py 25
+```
 ### 3. Enter your measurement
 
 When prompted, provide the measured level. The application then looks up the surrounding table values, interpolates, and prints the estimated volume.
