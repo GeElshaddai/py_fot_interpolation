@@ -54,7 +54,9 @@ Clone the repository or download and extract the project folder:
 ```bash
 git clone https://github.com/GeElshaddai/py_fot_interpolation.git
 ```
+
 Then, cd into the directiory:
+
 ```bash
 cd py_fot_interpolation
 ```
@@ -98,15 +100,20 @@ If you see `Installation OK`, you are ready to go.
 
 Create a CSV file containing your tank calibration data, with one column for the level and one for the volume. CSV file name should exactly be `tank_table.csv`:
 
+> Note: The header row should exactly be `level`, `percent`, `volume_cm`, and `volume_t`.
+
 ```csv
-level,volume
-0,0.0
-10,12.5
-20,28.0
-30,46.5
-40,67.0
-50,90.0
+level,percent,volume_cm,volume_t
+0,0,0.0,0.0
+10,20,12.5,12.0
+20,40,28.0,27.5
+30,60,46.5,46.0
+40,80,67.0,66.5
+50,100,90.0,89.5
 ```
+
+`volume_cm` means volume in cubic metre.
+While `volume_t` means volume in tonne.
 
 > Note: The level column must be sorted in ascending order, and column names should match what the application expects.
 
@@ -115,12 +122,15 @@ level,volume
 ```bash
 python fot_interpolation.py
 ```
+
 > Note: This way will ask you the measured level.
 
 Or you can directly provide the measured level, for example `25`:
+
 ```bash
 python fot_interpolation.py 25
 ```
+
 ### 3. Enter your measurement
 
 When prompted, provide the measured level. The application then looks up the surrounding table values, interpolates, and prints the estimated volume.
@@ -148,25 +158,14 @@ V = 37.25
 
 Estimated volume: **37.25**
 
-In Python, the same result can be achieved with numpy:
-
-```python
-import numpy as np
-import pandas as pd
-
-table = pd.read_csv("tank_table.csv")
-volume = np.interp(25, table["level"], table["volume"])
-print(volume)  # 37.25
-```
-
 ## Troubleshooting
 
-| Problem | Possible cause | Solution |
-|---|---|---|
-| `ModuleNotFoundError: No module named 'pandas'` | Dependencies not installed | Run `pip install pandas numpy` |
-| `FileNotFoundError` | Tank table file not found | Check the file name and path |
-| Unexpected or incorrect volume | Table not sorted or measured value out of range | Sort the level column ascending and keep inputs within the table range |
-| `pip` command not recognized | pip not on PATH | Use `python -m pip install pandas numpy` |
+| Problem                                         | Possible cause                                  | Solution                                                               |
+| ----------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------- |
+| `ModuleNotFoundError: No module named 'pandas'` | Dependencies not installed                      | Run `pip install pandas numpy`                                         |
+| `FileNotFoundError`                             | Tank table file not found                       | Check the file name and path                                           |
+| Unexpected or incorrect volume                  | Table not sorted or measured value out of range | Sort the level column ascending and keep inputs within the table range |
+| `pip` command not recognized                    | pip not on PATH                                 | Use `python -m pip install pandas numpy`                               |
 
 ## License
 
