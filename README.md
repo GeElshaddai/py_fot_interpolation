@@ -144,17 +144,21 @@ Using the sample table above, suppose the measured level is `25`:
 
 Linear interpolation formula:
 
-```
-V = V1 + (L - L1) * (V2 - V1) / (L2 - L1)
-```
+$$
+\begin{aligned}
+V = V_1 + \frac{(L - L_1)}{(L_2 - L_1)} \times{(V_2 - V_1)}
+\end{aligned}
+$$
 
 Calculation:
 
-```
-V = 28.0 + (25 - 20) * (46.5 - 28.0) / (30 - 20)
-V = 28.0 + 5 * 18.5 / 10
-V = 37.25
-```
+$$
+\begin{aligned}
+V &= 28.0 + \frac{(25-20)}{(30-20)} \times{(46.5 - 28.0)} \\
+V &= 28.0 + \frac{5}{10} \times{18.5} \\
+V &= 37.25
+\end{aligned}
+$$
 
 Estimated volume: **37.25**
 
